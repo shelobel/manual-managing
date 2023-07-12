@@ -1,0 +1,17 @@
+{% extends 'myApp/home.html' %}
+
+{% block content%}
+<h2>lets see if css loads</h2>
+
+          {% for material in docs %}
+            <div class="row bg-light-subtle text-center">
+                <div class="col-6">
+                {{material.name}}
+                </div>
+                <div class="col-6">
+                {{manual.pdf}}
+                </div>
+            </div>
+           {% endfor %}
+
+{% endblock content %}

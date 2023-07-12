@@ -1,0 +1,30 @@
+{% extends 'myApp/base.html' %}
+{% load static%}
+{% block content%}
+<table class="table table-striped table-bordered table-sm">  
+    <thead class="thead-dark">  
+    <tr>  
+        <th>manual name</th>  
+        <th>manual description</th>  
+        <th>manual uploaded_by</th>  
+        <th>Actions</th>  
+    </tr>  
+    </thead>  
+    <tbody>  
+{% for manual in manuals %}  
+    <tr>  
+        <td>{{ manual.title }}</td>  
+        <td>{{ manual.description }}</td>  
+        <td>{{ manual.uploaded_by }}</td>  
+        <td>  
+            <a href="edit/{{ manual.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>  
+            <a href="delete/{{ manual.id }}">Delete</a>  
+        </td>  
+    </tr>  
+{% endfor %}  
+    </tbody>  
+</table>  
+<br>  
+<br>  
+<a href="/add_manual" class="btn btn-primary">Add New Record</a>
+{% endblock %}
