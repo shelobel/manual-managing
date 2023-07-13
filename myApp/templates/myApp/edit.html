@@ -1,6 +1,6 @@
 {% extends 'myApp/base.html' %}
 {% block content %}
-<form method="POST" class="post-form" action="{% url 'update' manual.id %}">  
+<form method="POST" class="post-form" action="{% url 'edit' manual.id %}">  
         {% csrf_token %}  
     <div class="container">  
 <br>  
@@ -14,21 +14,21 @@
   <div class="form-group row">  
     <label class="col-sm-2 col-form-label">Manual Name:</label>  
     <div class="col-sm-4">  
-        <input type="text" required maxlength="100" value="{{ manual.title }}" />  
+      {{ form.title }}  
     </div>  
-  </div>  
+    </div>  
     <div class="form-group row">  
     <label class="col-sm-2 col-form-label">Manual Description:</label>  
     <div class="col-sm-4">  
-        <input type="text" required maxlength="254" value="{{ manual.description }}" />  
+      {{ form.description }}  
     </div>  
-  </div>  
+    </div>  
     <div class="form-group row">  
     <label class="col-sm-2 col-form-label">Manual Author:</label>  
     <div class="col-sm-4">  
-        <input type="text" value="{{ manual.uploaded_by }}" />  
+      {{ form.uploaded_by }}  
     </div>  
-  </div>  
+    </div>  
     <div class="form-group row">  
     <label class="col-sm-1 col-form-label"></label>  
     <div class="col-sm-4">  

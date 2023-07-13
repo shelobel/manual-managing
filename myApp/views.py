@@ -15,14 +15,14 @@ from .forms import ManualForm
 #     return render(request,'myApp/about.html')
 
 def manual_add(request):
+    manual = Manual.objects.create()
+    form = ManualForm(request.POST, instance = manual)
     if request.method =="POST":
-        form = ManualForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('home')
-        
-    else :
-        form = ManualForm()
+        else:
+            print('Not valid')
     return render(request,'myApp/add_manual.html',{'form':form})
 
 def home(request):
@@ -30,16 +30,23 @@ def home(request):
     return render(request,"myApp/home.html",{'manuals':manuals})
 
 def edit(request,id):
-    manual = Manual.objects.get(id=id)
-    return render(request,"myApp/edit.html",{'manual':manual})
-
-def update(request, id):  
     manual = Manual.objects.get(id=id)  
     form = ManualForm(request.POST, instance = manual)
     if form.is_valid():
         form.save()
-        return redirect("home")
-    return render(request,'myApp/edit.html',{'manual':manual})
+        print("form saved")
+        return redirect("/")
+    else:
+        print("not working")
+    return render(request,'myApp/edit.html',{'manual':manual, 'form':form})
+
+# def update(request, id):  
+#     manual = Manual.objects.get(id=id)  
+#     form = ManualForm(request.POST, instance = manual)
+#     if form.is_valid():
+#         form.save()
+#         return redirect("home")
+#     return render(request,'myApp/edit.html',{'manual':manual})
 
 def destroy(request,id):
     manual = Manual.objects.get(id=id)
