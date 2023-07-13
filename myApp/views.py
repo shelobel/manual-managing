@@ -15,8 +15,7 @@ from .forms import ManualForm
 #     return render(request,'myApp/about.html')
 
 def manual_add(request):
-    manual = Manual.objects.create()
-    form = ManualForm(request.POST, instance = manual)
+    form = ManualForm(request.POST)
     if request.method =="POST":
         if form.is_valid():
             form.save()
